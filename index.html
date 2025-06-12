@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nosso Amor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0b172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .main-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .card, .quiz-container {
+      background: #2c2844;
+      border-radius: 28px;
+      width: 420px;
+      padding: 30px 25px 40px 25px;
+      box-shadow: 0 15px 25px rgba(107, 94, 159, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #5f55a0;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #322f47;
+      margin-bottom: 25px;
+    }
+
+    .slider img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      border-radius: 28px;
+    }
+
+    .slider img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f48fb1;
+      margin: 20px 0 5px;
+      text-shadow: 0 0 8px #f48fb199;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #e1bee7;
+      font-style: italic;
+      margin-bottom: 25px;
+    }
+
+    .audio-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #3b3560;
+      border-radius: 22px;
+      padding: 12px 20px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 5px 15px rgba(107, 94, 159, 0.35);
+      margin-bottom: 25px;
+    }
+
+    .music-cover {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin: 10px 0 20px;
+      white-space: pre-wrap;
+      color: #ffe0f0;
+      text-shadow: 0 0 4px #f48fb166;
+    }
+
+    .hearts {
+      font-size: 2rem;
+      animation: gentlePulse 2.2s ease-in-out infinite;
+      text-shadow: 0 0 12px #ffb6c1aa;
+    }
+
+    .contador {
+      font-size: 1.2rem;
+      color: #fce4ec;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px #f8bbd0;
+    }
+
+    /* Quiz */
+    .quiz-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #ce93d8;
+      text-shadow: 0 0 8px #ce93d899;
+    }
+
+    .option {
+      background: #3b3560;
+      padding: 12px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: 0.3s;
+      border: 1px solid #5f55a0;
+    }
+
+    .option:hover {
+      background: #4a4373;
+    }
+
+    .option.selected {
+      background: #ba68c8;
+      color: white;
+      border-color: #e1bee7;
+    }
+
+    .btn-next {
+      margin-top: 20px;
+      background: #ab47bc;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-next:disabled {
+      background: #3b3560;
+      color: #9c93c7;
+      cursor: not-allowed;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #ffe0f0;
+      display: none;
+    }
+
+    .qrcode-container {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .qrcode-container img {
+  width: 200px;
+  max-width: 90%;
+  border-radius: 12px;
+  border: 2px solid #ba68c8;
+}
+
+
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="title">Nosso Amor 💞</h1>
+  <div class="contador">Estamos juntas há: <span id="time">...</span></div>
+
+  <div class="main-container">
+    <div class="card">
+      <div class="slider">
+        <img src="foto1.jpg" class="active" />
+        <img src="foto2.jpg" />
+        <img src="foto3.jpg" />
+        <img src="foto4.jpg" />
+        <img src="foto5.jpg" />
+        <img src="foto6.jpg" />
+        <img src="foto7.jpg" />
+        <img src="foto8.jpg" />
+        <img src="foto9.jpg" />
+        <img src="foto10.jpg" />
+        <img src="foto11.jpg" />
+        <img src="foto12.jpg" />
+        <img src="foto13.jpg" />
+        <img src="foto14.jpg" />
+        <img src="foto15.jpg" />
+        <img src="foto16.jpg" />
+        <img src="foto17.jpg" />
+        <img src="foto18.jpg" />
+        <img src="foto19.jpg" />
+        <img src="foto20.jpg" />
+        <img src="foto21.jpg" />
+        <img src="foto22.jpg" />
+        
+
+      </div>
+
+      <div class="subtitle">"Toda vez que toca, penso em você..."</div>
+      <div class="audio-container">
+        <img src="morar.jpeg" class="music-cover" />
+        <audio controls autoplay>
+          <source src="Morar. Supercombo.mp3" type="audio/mp3" />
+          Seu navegador não suporta áudio.
+        </audio>
+      </div>
+
+      <div class="message">
+        Foi Supercombo que abriu o caminho,<br>
+        E logo a gente não andava sozinha.<br>
+        Teu abraço é conforto, tua risada, paz,<br>
+        Ficar do teu lado é tudo que me satisfaz.
+      </div>
+      <div class="hearts">❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥❤️‍🔥</div>
+    </div>
+
+    <div class="quiz-container">
+      <div class="quiz-title">Quiz do Nosso Amor 💜</div>
+      <div id="question"></div>
+      <div id="options"></div>
+      <button class="btn-next" id="btn-next" disabled>Próxima</button>
+      <div class="result" id="result"></div>
+      <div class="qrcode-container" id="qrcode">
+        <img src="spotifylink.jpg" alt="QR Code" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Contador de tempo juntas
+    function updateTimeTogether() {
+      const startDate = new Date("2022-09-15T00:00:00");
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById("time").textContent = `${days} dias, ${hours}h ${minutes}min ${seconds}s`;
+    }
+    setInterval(updateTimeTogether, 1000);
+    updateTimeTogether();
+
+    // Slider de fotos
+    const slides = document.querySelectorAll(".slider img");
+    let slideIndex = 0;
+    setInterval(() => {
+      slides[slideIndex].classList.remove("active");
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }, 3000);
+
+    // Quiz
+    const questions = [
+      { question: "Qual a cor do céu?", options: ["Azul", "Rosa", "Roxo"], correct: 0 },
+      { question: "Qual nome do meu cachorro?", options: ["Yuri", "Mike", "Freddy"], correct: 0 },
+      { question: "Qual música lembra a gente?", options: ["Supercombo", "Coldplay", "Anitta"], correct: 0 },
+      { question: "Qual doce tenho alergia?", options: ["Chocolate", "Morango", "Açaí"], correct: 2 },
+      { question: "Qual estação do ano mais remete a flor?", options: ["Verão", "Primavera", "Outono"], correct: 1 },
+      { question: "Qual animal não tenho atualmente?", options: ["Cachorro", "Gato", "Pássaro"], correct: 2 },
+      { question: "Onde eu nasci?", options: ["Guara", "Itapecirica da serra", "Taboão da serra"], correct: 2 },
+      { question: "Qual a minha altura?", options: ["1,67", "1,62", "1,60"], correct: 2 },
+      { question: "Qual é o tamanho do meu pé?", options: ["39", "35", "32"], correct: 1 }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const btnNext = document.getElementById("btn-next");
+    const resultEl = document.getElementById("result");
+    const qrcodeContainer = document.getElementById("qrcode");
+
+    function loadQuestion() {
+      selectedOption = null;
+      btnNext.disabled = true;
+      resultEl.style.display = "none";
+      qrcodeContainer.style.display = "none";
+
+      const q = questions[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+
+      q.options.forEach((opt, i) => {
+        const div = document.createElement("div");
+        div.className = "option";
+        div.textContent = opt;
+        div.onclick = () => {
+          if (selectedOption !== null) return;
+          selectedOption = i;
+          document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
+          div.classList.add("selected");
+          btnNext.disabled = false;
+        };
+        optionsEl.appendChild(div);
+      });
+    }
+
+    btnNext.onclick = () => {
+      if (selectedOption === null) return;
+      if (selectedOption === questions[currentQuestion].correct) score++;
+      currentQuestion++;
+      currentQuestion < questions.length ? loadQuestion() : showResult();
+    };
+
+    function showResult() {
+      questionEl.style.display = "none";
+      optionsEl.style.display = "none";
+      btnNext.style.display = "none";
+      resultEl.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+      resultEl.style.display = "block";
+      if (score >= 8) qrcodeContainer.style.display = "block";
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
